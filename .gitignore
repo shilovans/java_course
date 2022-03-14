@@ -1,7 +1,6 @@
 .gradle
 build/
 .DS_Store
-.idea/
 sandbox/out/
 
 # Ignore Gradle GUI config
