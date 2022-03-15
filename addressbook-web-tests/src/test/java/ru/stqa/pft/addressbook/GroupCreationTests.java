@@ -3,10 +3,7 @@ package ru.stqa.pft.addressbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.fail;
 
 public class GroupCreationTests {
   private WebDriver wb;
