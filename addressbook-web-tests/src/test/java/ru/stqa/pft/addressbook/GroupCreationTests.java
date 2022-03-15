@@ -18,10 +18,6 @@ public class GroupCreationTests {
     wb = new ChromeDriver();
     wb.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     js = (JavascriptExecutor) wb;
-  }
-
-  @Test
-  public void testGroupCreation() throws Exception {
     wb.get("http://localhost/addressbook/group.php");
     wb.findElement(By.name("user")).click();
     wb.findElement(By.name("user")).clear();
@@ -30,6 +26,11 @@ public class GroupCreationTests {
     wb.findElement(By.name("pass")).clear();
     wb.findElement(By.name("pass")).sendKeys("secret");
     wb.findElement(By.xpath("//input[@value='Login']")).click();
+  }
+
+  @Test
+  public void testGroupCreation() throws Exception {
+
     wb.findElement(By.name("new")).click();
     wb.findElement(By.name("group_name")).click();
     wb.findElement(By.name("group_name")).clear();
