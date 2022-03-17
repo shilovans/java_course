@@ -14,4 +14,9 @@ public class NavigationHelper {
     wd.findElement(By.linkText("groups")).click();
   }
 
+  public void gotoAddContactPage() {
+    wd.findElement(By.linkText("add new")).click();
+    wd.get("http://localhost/addressbook/edit.php");
+  }
+
 }

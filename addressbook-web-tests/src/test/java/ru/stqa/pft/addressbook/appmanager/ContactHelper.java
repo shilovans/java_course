@@ -38,8 +38,8 @@ public class ContactHelper {
     wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
   }
 
-  public void gotoAddContactPage() {
-    wd.findElement(By.linkText("add new")).click();
-    wd.get("http://localhost/addressbook/edit.php");
-  }
+  //public void gotoAddContactPage() {
+  //  wd.findElement(By.linkText("add new")).click();
+  //  wd.get("http://localhost/addressbook/edit.php");
+  // }
 }
