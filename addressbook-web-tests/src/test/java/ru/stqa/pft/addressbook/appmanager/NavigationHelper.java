@@ -18,4 +18,8 @@ public class NavigationHelper extends HelperBase{
     wd.get("http://localhost/addressbook/edit.php");
   }
 
+  public void gotoHomePage () {
+    click(By.linkText("home"));
+  }
+
 }
