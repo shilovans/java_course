@@ -17,6 +17,15 @@ public class ContactHelper extends HelperBase {
     wd.get("http://localhost/addressbook/index.php");
   }
 
+  public void gotoAddContactPage() {
+    click(By.linkText("add new"));
+    wd.get("http://localhost/addressbook/edit.php");
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
   public  void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
@@ -37,12 +46,12 @@ public class ContactHelper extends HelperBase {
 
   public void viewContactDetails() {
     //переход в карточку контакта по нажатию на иконку [Details] в таблице контактов
-      click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[7]/a/img"));
+    click(By.xpath("//img[@alt='Details']"));
   }
 
   public void editContact() {
     //переход в карточку редактирования контакта по нажатию на иконку [Edit] в таблице контактов
-    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
+    click(By.xpath("//img[@alt='Edit']"));
   }
 
   public void submitContactModification() {
@@ -59,5 +68,16 @@ public class ContactHelper extends HelperBase {
 
   public void modifyContact() {
     click((By.name("modifiy")));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    gotoAddContactPage();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
