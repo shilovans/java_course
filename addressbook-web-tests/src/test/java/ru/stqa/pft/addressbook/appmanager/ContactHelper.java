@@ -38,7 +38,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByIndex(contactData.getGroupIndex());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -72,6 +72,7 @@ public class ContactHelper extends HelperBase {
 
   public void createContact(ContactData contact, boolean creation) {
     gotoAddContactPage();
+
     fillContactForm(contact, creation);
     submitContactCreation();
     returnToHomePage();
