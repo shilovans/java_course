@@ -12,7 +12,7 @@ public class ContactDeletionTests extends TestBase {
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Test", "Testov", "Test Address", "+79201234567", "user@test.com"), 1);
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(beforeContact - 1);
     app.getContactHelper().viewContactDetails();
     app.getContactHelper().modifyContact();
     app.getContactHelper().deleteContactEditCard();
