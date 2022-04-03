@@ -72,7 +72,6 @@ public class ContactHelper extends HelperBase {
 
   public void createContact(ContactData contact, Integer groupIndex) {
     gotoAddContactPage();
-
     fillContactForm(contact, true, groupIndex);
     submitContactCreation();
     returnToHomePage();
@@ -80,5 +79,9 @@ public class ContactHelper extends HelperBase {
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
