@@ -59,4 +59,8 @@ public class ApplicationManager {
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
+
+  public void wait(int seconds) {
+    wd.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+  }
 }

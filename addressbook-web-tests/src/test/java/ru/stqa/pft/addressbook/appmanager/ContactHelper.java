@@ -68,6 +68,10 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
 
+  public void deleteContact() {
+    click(By.cssSelector("input[value=Delete]"));
+  }
+
   public void confirmDeletion() {
     wd.switchTo().alert().accept();
   }
@@ -95,8 +99,10 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element: elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(name, null, null, null, null);
+      String lastName = element.findElement(By.xpath("//td[2]")).getText();
+      String firstName = element.findElement(By.xpath("//td[3]")).getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("Value");
+      ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
       contacts.add(contact);
     }
     return contacts;
