@@ -20,7 +20,7 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
     ContactData contact = new ContactData("Test", "Testov", "Test Address", "+79201234567", "user@test.com");
-    app.getContactHelper().createContact(contact, 0);
+    app.getContactHelper().createContact(contact, 1);
     app.wait(2);
     List<ContactData> afterContact = app.getContactHelper().getContactList();
     Assert.assertEquals(afterContact.size(), beforeContact.size() + 1);
