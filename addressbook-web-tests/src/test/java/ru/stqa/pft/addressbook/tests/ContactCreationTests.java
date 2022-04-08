@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,9 @@ public class ContactCreationTests extends TestBase {
 
     contact.setId(afterContact.stream().max(((o1, o2) -> Integer.compare(o1.getId(),o2.getId()))).get().getId());
     beforeContact.add(contact);
-    Assert.assertEquals(new HashSet<Object>(beforeContact), new HashSet<Object>(afterContact));
+    Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+    beforeContact.sort(ById);
+    afterContact.sort(ById);
+    Assert.assertEquals(beforeContact, afterContact);
   }
 }
