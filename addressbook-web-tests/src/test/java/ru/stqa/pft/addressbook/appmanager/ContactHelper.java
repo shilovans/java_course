@@ -55,9 +55,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//img[@alt='Details']"));
   }
 
-  public void editContact() {
+  public void editContact(int contactIndex) {
     //переход в карточку редактирования контакта по нажатию на иконку [Edit] в таблице контактов
-    click(By.xpath("//img[@alt='Edit']"));
+    click(By.xpath("(//img[@alt='Edit'])[" + (contactIndex + 1) + "]"));
   }
 
   public void submitContactModification() {
