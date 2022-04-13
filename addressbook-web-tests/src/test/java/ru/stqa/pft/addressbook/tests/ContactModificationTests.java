@@ -21,21 +21,23 @@ public class ContactModificationTests extends TestBase {
       app.getNavigationHelper().gotoHomePage();
       app.getContactHelper().createContact(new ContactData("Test", "Testov", "Test Address", "+79201234567", "user@test.com"), 1);
     }
+    Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     List<ContactData> beforeContact = app.getContactHelper().getContactList();
+    beforeContact.sort(ById);
+
     int contactIndex = beforeContact.size() - 1;
-    app.getContactHelper().editContact(contactIndex);
-    ContactData contact = new ContactData(beforeContact.get(contactIndex).getId(),"Test", "Testov", "Test Address", "+79201234567", "user@test.com");
+    int contactId = beforeContact.get(contactIndex).getId();
+    app.getContactHelper().editContact(contactId);
+    ContactData contact = new ContactData(contactId,"Test", "Testov", "Test Address", "+79201234567", "user@test.com");
     app.getContactHelper().fillContactForm(contact, false, 1);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
     List<ContactData> afterContact = app.getContactHelper().getContactList();
+    afterContact.sort(ById);
     Assert.assertEquals(afterContact.size(), beforeContact.size());
 
-    beforeContact.remove(beforeContact.size() - 1);
+    beforeContact.remove(contactIndex);
     beforeContact.add(contact);
-    Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());;
-    beforeContact.sort(ById);
-    afterContact.sort(ById);
     Assert.assertEquals(beforeContact, afterContact);
   }
 }

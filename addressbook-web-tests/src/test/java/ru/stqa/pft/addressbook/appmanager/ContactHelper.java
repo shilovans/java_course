@@ -55,9 +55,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//img[@alt='Details']"));
   }
 
-  public void editContact(int contactIndex) {
+  public void editContact(int contactId) {
     //переход в карточку редактирования контакта по нажатию на иконку [Edit] в таблице контактов
-    click(By.xpath("(//img[@alt='Edit'])[" + (contactIndex + 1) + "]"));
+    click(By.xpath("(//input[@id='" + contactId + "']/../..//img[@alt='Edit'])"));
   }
 
   public void submitContactModification() {
@@ -99,8 +99,8 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element: elements) {
-      String lastName = element.findElement(By.xpath("//td[2]")).getText();
-      String firstName = element.findElement(By.xpath("//td[3]")).getText();
+      String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+      String firstName = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("Value"));
       ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
       contacts.add(contact);
